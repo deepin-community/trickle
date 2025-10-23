@@ -1,1 +1,2 @@
 debian/trickled.conf etc
+trickle-overload.so /usr/lib/trickle/
