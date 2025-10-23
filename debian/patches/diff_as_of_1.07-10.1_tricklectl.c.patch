@@ -1,0 +1,14 @@
+Description: Changes to tricklectl.c as of trickle 1.07-10.1
+ Adds a missing format string.
+
+--- trickle-1.07.orig/tricklectl.c
++++ trickle-1.07/tricklectl.c
+@@ -91,7 +91,7 @@
+ 	trickled_ctl_open(&trickled_sock);
+ 
+ 	if (!trickled_sock)
+-		err(1, sockname);
++		err(1, "%s", sockname);
+ 
+ 	handle_command(i, argc, argv);
+ 

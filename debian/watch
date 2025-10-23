@@ -1,0 +1,3 @@
+version=4
+https://monkey.org/~marius/pages/?page=trickle .*trickle-(.*)\.tar\.gz
+

@@ -1,0 +1,41 @@
+Description: Changes to trickle.1 as of trickle 1.07-10.1
+
+--- trickle-1.07.orig/trickle.1
++++ trickle-1.07/trickle.1
+@@ -20,6 +20,7 @@
+ .Op Fl t Ar time
+ .Op Fl l Ar length
+ .Op Fl n Ar path
++.Op Fl P Ar path
+ .Ar command ...
+ .Sh DESCRIPTION
+ .Nm
+@@ -39,7 +40,7 @@
+ separately, or in an aggregate fashion.
+ .Pp
+ The options are as follows:
+-.Bl -tag -width Ds_imagedir
++.Bl -tag -width Ds_imagedir 
+ .It Fl h
+ Displays help.
+ .It Fl v
+@@ -70,7 +71,7 @@
+ .Ar seconds 
+ s.  The smoothing time determines with what intervals 
+ .Nm
+-will try to let the application transcieve data.  Smaller values will
++will try to let the application transceive data.  Smaller values will
+ result in a more continuous (smooth) session, while larger values may
+ produce bursts in the sending and receiving data.  Smaller values (0.1
+ - 1 s) are ideal for interactive applications while slightly larger
+@@ -94,6 +95,10 @@
+ By default, 
+ .Ar /tmp/.trickled.sock
+ is used.
++.It Fl P Ar path
++Use the specified .so instead of the standard one, this is useful if you don't
++run trickle from a standard installation.
++.El
+ .Sh EXAMPLES
+ .Cm trickle -u 10 -d 20 ncftp
+ .Pp
