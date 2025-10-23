@@ -1,0 +1,28 @@
+Description: Changes to trickled.8 as of trickle 1.07-10.1
+
+--- trickle-1.07.orig/trickled.8
++++ trickle-1.07/trickled.8
+@@ -57,7 +57,7 @@
+ .Ar seconds 
+ s.  The smoothing time determines with what intervals 
+ .Nm
+-will try to let the application transcieve data.  Smaller values will
++will try to let the application transceive data.  Smaller values will
+ result in a more continuous (smooth) session, while larger values may
+ produce bursts in the sending and receiving data.  Smaller values (0.1
+ - 1 s) are ideal for interactive applications while slightly larger
+@@ -101,6 +101,7 @@
+ is at eliminating bandwidth consumption peaks.  Lower values will be
+ more aggressive, but may also result in over shaping.  The default
+ value (512 KB) is usually sufficient.
++.El
+ .Sh EXAMPLES
+ .Cm trickled -u 10 -d 20
+ .Pp
+@@ -137,4 +138,4 @@
+ .\" .Xr kqueue 2 .
+ .\" Please report any bugs to Marius Aamodt Eriksen 
+ .\" .Aq marius@monkey.org .
+-.\" .Sh CAVEATS
+\ No newline at end of file
++.\" .Sh CAVEATS

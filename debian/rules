@@ -1,4 +1,13 @@
 #!/usr/bin/make -f
 
+export DEB_BUILD_MAINT_OPTIONS=hardening=+all
+
 %:
-	dh $@
+	dh $@ --no-parallel
+
+override_dh_installdocs:
+	dh_installdocs -n
+
+override_dh_autoreconf:
+	@echo skip autoreconf
+	autoreconf -if

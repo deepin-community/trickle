@@ -1,0 +1,48 @@
+Description: Changes to Makefile.am as of trickle 1.07-10.1
+
+--- trickle-1.07.orig/Makefile.am
++++ trickle-1.07/Makefile.am
+@@ -4,7 +4,7 @@
+                        atomicio.lo xdr.lo
+ trickle-overload.so: $(TRICKLEOVERLOADFILES)
+ 	$(LIBTOOL) --mode=link $(CC) $(CFLAGS) -o libtmp$@.la                \
+-		-rpath $(libdir)/trickle $(TRICKLEOVERLOADFILES) $(LIBS)     \
++		-rpath $(libdir)/trickle $(TRICKLEOVERLOADFILES) $(LIBS)   \
+ 		$(LDFLAGS) -module -avoid-version -nostdlib @LIBDL@
+ 	@rm -f libtmp$@.la tmp$@.so* $@
+ 	@cp .libs/libtmp$@.so $@
+@@ -17,24 +17,25 @@
+ 
+ bin_PROGRAMS = trickle trickled tricklectl
+ 
+-trickle_DEPENDENCIES = @ERRO@ @LIBOBJS@
++trickle_DEPENDENCIES = @ERRO@
+ trickle_SOURCES = trickle.c util.c getopt.c
+-trickle_LDADD = @ERRO@ @LIBOBJS@
++
++trickle_LDADD = @ERRO@ -lbsd
+ 
+ trickled_SOURCES = trickled.c atomicio.c print.c bwstat.c client.c conf.c \
+                    util.c cleanup.c getopt.c xdr.c
+-trickled_LDADD = @EVENTLIB@ @LIBOBJS@
++trickled_LDADD = @EVENTLIB@ -lbsd
+ 
+ tricklectl_SOURCES = tricklectl.c trickledu.c atomicio.c xdr.c
+-tricklectl_LDADD = @ERRO@ @LIBOBJS@
++tricklectl_LDADD = @ERRO@  -lbsd
+ 
+-AM_CFLAGS += -Wall -Icompat @EVENTINC@
++AM_CFLAGS = -Wall -Icompat @EVENTINC@
+ 
+ overloaddir = $(libdir)
+-overload_DATA = libtrickle.so
+-
+-libtrickle.so: trickle-overload.c atomicio.c
+-$(overload_DATA):
++#overload_DATA = libtrickle.so
++#
++#libtrickle.so: trickle-overload.c atomicio.c
++#$(overload_DATA):
+ 
+ CLEANFILES = *.so
+ 

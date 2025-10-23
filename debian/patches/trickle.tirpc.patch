@@ -1,0 +1,36 @@
+Description: Fix FTBFS due to RPC removal from glibc
+Author: Aurelien Jarno <aurel32@debian.org>
+Bug-Debian: https://bugs.debian.org/992913
+
+diff -u trickle-1.07/Makefile.am trickle-1.07/Makefile.am
+--- trickle-1.07/Makefile.am
++++ trickle-1.07/Makefile.am
+@@ -24,12 +24,12 @@
+ 
+ trickled_SOURCES = trickled.c atomicio.c print.c bwstat.c client.c conf.c \
+                    util.c cleanup.c getopt.c xdr.c
+-trickled_LDADD = @EVENTLIB@ -lbsd
++trickled_LDADD = @EVENTLIB@ @TIRPC_LIBS@ -lbsd
+ 
+ tricklectl_SOURCES = tricklectl.c trickledu.c atomicio.c xdr.c
+-tricklectl_LDADD = @ERRO@  -lbsd
++tricklectl_LDADD = @ERRO@ @TIRPC_LIBS@ -lbsd
+ 
+-AM_CFLAGS = -Wall -Icompat @EVENTINC@
++AM_CFLAGS = -Wall -Icompat @EVENTINC@ @TIRPC_CFLAGS@
+ 
+ overloaddir = $(libdir)
+ #overload_DATA = libtrickle.so
+diff -u trickle-1.07/configure.in trickle-1.07/configure.in
+--- trickle-1.07/configure.in
++++ trickle-1.07/configure.in
+@@ -119,6 +119,9 @@
+ AC_SUBST(EVENTINC)
+ AC_SUBST(EVENTLIB)
+ 
++dnl Checks for libtirpc
++PKG_CHECK_MODULES(TIRPC, libtirpc)
++
+ dnl check if underscores are needed
+ AC_MSG_CHECKING(if underscores are needed for symbols)
+ AC_TRY_RUN(

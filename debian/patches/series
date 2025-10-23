@@ -1,0 +1,17 @@
+#diff_as_of_1.07-10.1_Makefile.am.patch
+#diff_as_of_1.07-10.1_configure.in.patch
+diff_as_of_1.07-10.1_getopt.c.patch
+diff_as_of_1.07-10.1_test.c.patch
+#diff_as_of_1.07-10.1_trickle-overload.c.patch
+#diff_as_of_1.07-10.1_trickle.1.patch
+diff_as_of_1.07-10.1_trickle.c.patch
+#diff_as_of_1.07-10.1_tricklectl.c.patch
+#diff_as_of_1.07-10.1_trickled.8.patch
+diff_as_of_1.07-10.1_trickled.conf.5.patch
+#trickle.tirpc.patch
+fix-test-for-dh-compat-13.patch
+fix-overload-search-path.patch
+drop-unknown
+gh34
+more
+64bit_time_t.patch
